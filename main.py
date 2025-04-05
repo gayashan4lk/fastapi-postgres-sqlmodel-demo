@@ -65,7 +65,7 @@ def read_heroes(
     heroes = session.exec(select(Hero).offset(offset).limit(limit)).all()
     return heroes
 
-@app.get("/heroes/{hero_id}")
+@app.get("/heroes/{hero_id}", response_model=HeroPublic)
 def read_hero(hero_id: int, session: SessionDep):
     hero = session.get(Hero, hero_id)
     if not hero:
